@@ -133,12 +133,12 @@ bash PATH TO/copticmt/scripts/training/BPE/CopticEnglish/generateEnglishToCoptic
 ##### Arabic-Coptic
 ```bash
 #!/bin/bash
-python3 
+python3 /PATH TO/copticmt/t5_translation/02_Translation.py --tsv_file "PATH TO/copticmt/CoPARA/dataset/tsv/CopticArabicProcessedTrain.tsv "
 ```
 
 ##### English-Coptic
 ```bash
 #!/bin/bash
 
-python3 
+python3  /PATH TO/copticmt/t5_translation/02_Translation.py --tsv_file "PATH TO/copticmt/CopEng/copticEnglish.csv"
 ```
