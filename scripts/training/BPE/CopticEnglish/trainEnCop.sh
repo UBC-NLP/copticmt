@@ -1,0 +1,34 @@
+CUDA_VISIBLE_DEVICES=1,3,0 fairseq-train "PATH TO/copticmt/CopEng/FairSEQ/BPE/BPE_en_coptic.tokenized.en-coptic" \
+    --arch "transformer" \
+    --dropout 0.3 \
+    --attention-dropout 0.1 \
+    --activation-dropout 0.3 \
+    --encoder-embed-dim 512 \
+    --encoder-ffn-embed-dim 2048 \
+    --encoder-layers 6 \
+    --encoder-attention-heads 8 \
+    --encoder-learned-pos \
+    --decoder-embed-dim 512 \
+    --decoder-ffn-embed-dim 2048 \
+    --decoder-layers 6 \
+    --decoder-attention-heads 8 \
+    --decoder-learned-pos \
+    --max-epoch 100 \
+    --optimizer adam \
+    --lr 5e-4 \
+    --batch-size 32 \
+    --seed 1 \
+    --encoder-layerdrop 0.2 \
+    --decoder-layerdrop 0.2 \
+    --criterion "label_smoothed_cross_entropy" \
+    --warmup-updates 4000 \
+    --source-lang "coptic" \
+    --target-lang "en" \
+    --label-smoothing 0.1 \
+    --lr-scheduler "inverse_sqrt" \
+    --save-dir "PATH TO/copticmt/CopEng/FairSEQ/BPE/checkpoints/english2copticAgain" \
+    --find-unused-parameters \
+    --wandb-project "english to coptic Translation BPE Translation" \
+    --ddp-backend=legacy_ddp \
+    --no-epoch-checkpoints \
+    --log-format=json --log-interval=10 2>&1 | tee "PATH TO/copticmt/CopEng/FairSEQ/BPE/checkpoints/english2coptic/english to coptic bpe_training_log.log"

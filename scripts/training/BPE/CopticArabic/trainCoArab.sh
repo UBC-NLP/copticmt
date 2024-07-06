@@ -1,0 +1,34 @@
+CUDA_VISIBLE_DEVICES=3,2    fairseq-train "PATH TO/copticmt/CoPARA/FairSEQ/BPE/BPE_coptic_ar.tokenized.coptic-ar" \
+    --arch "transformer" \
+    --dropout 0.3 \
+    --attention-dropout 0.1 \
+    --activation-dropout 0.3 \
+    --encoder-embed-dim 512 \
+    --encoder-ffn-embed-dim 2048 \
+    --encoder-layers 6 \
+    --encoder-attention-heads 8 \
+    --encoder-learned-pos \
+    --decoder-embed-dim 512 \
+    --decoder-ffn-embed-dim 2048 \
+    --decoder-layers 6 \
+    --decoder-attention-heads 8 \
+    --decoder-learned-pos \
+    --max-epoch 100 \
+    --optimizer adam \
+    --lr 5e-4 \
+    --batch-size 32 \
+    --seed 1 \
+    --encoder-layerdrop 0.2 \
+    --decoder-layerdrop 0.2 \
+    --criterion "label_smoothed_cross_entropy" \
+    --warmup-updates 4000 \
+    --source-lang "coptic" \
+    --target-lang "ar" \
+    --label-smoothing 0.1 \
+    --lr-scheduler "inverse_sqrt" \
+    --save-dir "PATH TO/copticmt/CoPARA/FairSEQ/BPE/coptic2arabicnewdata" \
+    --find-unused-parameters \
+    --wandb-project "Coptic2arabic Translation BPE Translation" \
+    --ddp-backend=legacy_ddp \
+    --no-epoch-checkpoints \
+    --log-format=json --log-interval=10 2>&1 | tee "PATH TO/copticmt/CoPARA/FairSEQ/BPE/coptic2arabic_bpe_training_log.log"
